@@ -5,6 +5,7 @@ import az.softwarevillage.book.dto.response.BaseResponse;
 import az.softwarevillage.book.dto.response.UserResponse;
 import az.softwarevillage.book.enums.EnumAvailableStatus;
 import az.softwarevillage.book.exception.UserExistsException;
+import az.softwarevillage.book.exception.UserNotFoundExeption;
 import az.softwarevillage.book.model.User;
 import az.softwarevillage.book.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,6 +44,24 @@ public class UserService {
                 .findAllByStatus(EnumAvailableStatus.ACTIVE.getValue());
         return getUserResponseList(users);
     }
+
+    public UserResponse getUsersById(Long id) {
+        User user = userRepository.findByIdAndStatus(id, EnumAvailableStatus.ACTIVE.getValue());
+if (user == null) {
+    throw new  UserNotFoundExeption("User not Found");
+}
+        return UserResponse.builder().email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .id(user.getId())
+                .phone(user.getPhone())
+                .password(user.getPassword())
+                .role(user.getRole())
+                .username(user.getUsername())
+                .build();
+
+    }
+
 
     private List<UserResponse> getUserResponseList(List<User> users) {
         List<UserResponse> userResponses = new ArrayList<>();
