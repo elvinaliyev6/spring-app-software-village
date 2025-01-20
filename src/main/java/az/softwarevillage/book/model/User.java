@@ -4,6 +4,7 @@ import az.softwarevillage.book.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "users")
@@ -12,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class User {
 
     @Id
@@ -22,10 +24,13 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
+
+    @Column(name = "phone")
     private String phone;
 
-    @JsonIgnore
-    private Integer status=1;
+    @Column(name = "status")
+    @ColumnDefault(value = "1")
+    private Integer status;
 
     @Enumerated(EnumType.STRING)
     private Role role;
