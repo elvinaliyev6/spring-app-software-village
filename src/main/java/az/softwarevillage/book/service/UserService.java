@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
+private String name;
     private final UserRepository userRepository;
 
     public BaseResponse registerUser(UserRequest userRequest) {
@@ -47,9 +47,9 @@ public class UserService {
 
     public UserResponse getUsersById(Long id) {
         User user = userRepository.findByIdAndStatus(id, EnumAvailableStatus.ACTIVE.getValue());
-if (user == null) {
-    throw new  UserNotFoundExeption("User not Found");
-}
+        if (user == null) {
+            throw new UserNotFoundExeption("User not Found");
+        }
         return UserResponse.builder().email(user.getEmail())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
