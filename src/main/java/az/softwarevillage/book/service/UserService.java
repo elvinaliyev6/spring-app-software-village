@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
+private String name;
     private final UserRepository userRepository;
 
     public BaseResponse registerUser(UserRequest userRequest) {
