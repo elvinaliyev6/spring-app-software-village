@@ -47,6 +47,17 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
+    @ExceptionHandler(BookAlreadyExist.class)
+    @ResponseStatus(HttpStatus.ALREADY_REPORTED)
+    ErrorResponse handleBookAlreadyExist(BookAlreadyExist e){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(e.getMessage());
+        errorResponse.setErrorCode(ErrorCodeEnum.BOOK_ALREADY_EXIST_ERROR.getCode());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setStatus(HttpStatus.ALREADY_REPORTED.value());
+        return errorResponse;
+    }
+
 
 
 }
