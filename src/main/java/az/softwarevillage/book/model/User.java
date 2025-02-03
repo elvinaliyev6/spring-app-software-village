@@ -8,8 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
