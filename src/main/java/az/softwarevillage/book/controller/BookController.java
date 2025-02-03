@@ -17,14 +17,25 @@ public class BookController {
     BookService bookService;
 
     @PostMapping(path = "/save-book")
-    public BaseResponse saveBook(@RequestBody BookRequest bookRequest){
+    public BaseResponse saveBook(@RequestBody BookRequest bookRequest) {
         bookService.saveBook(bookRequest);
         return BaseResponse.getSuccessMessage();
     }
 
     @GetMapping(path = "/get-all")
-    public List<BookResponse> getAllBooks(){
-       return bookService.getAllBooks();
+    public List<BookResponse> getAllBooks() {
+        return bookService.getAllBooks();
     }
+
+    @GetMapping("/get-by-id/{id}")
+    public BookResponse getBookById(@PathVariable Long id) {
+        return bookService.getBookById(id);
+    }
+
+    @GetMapping(path = "/get-books-by-author")
+    public List<BookResponse> getBooksByAuthor(@RequestParam String author) {
+        return bookService.getBooksByAuthor(author);
+    }
+
 
 }

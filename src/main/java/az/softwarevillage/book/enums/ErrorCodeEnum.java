@@ -9,7 +9,9 @@ public enum ErrorCodeEnum {
     USERNAME_ALREADY_EXIST_ERROR("Username already exists",11),
     USER_NOT_FOUND_ERROR("User not Found", 12),
     UNKNOWN_ERROR("Unknown Error", 13),
-    BOOK_ALREADY_EXIST_ERROR("Book Already exist", 21);
+    BOOK_ALREADY_EXIST_ERROR("Book Already Exist", 21),
+    BOOK_NOT_FOUND_ERROR("Book Not Found", 22),
+    AUTHOR_NOT_FOUND_ERROR("Author Not Found", 23);
 
     private String message;
     private int code;

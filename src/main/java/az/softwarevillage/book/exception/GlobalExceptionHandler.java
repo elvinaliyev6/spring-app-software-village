@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BookAlreadyExist.class)
     @ResponseStatus(HttpStatus.ALREADY_REPORTED)
-    ErrorResponse handleBookAlreadyExist(BookAlreadyExist e){
+    ErrorResponse handleBookAlreadyExist(BookAlreadyExist e) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage(e.getMessage());
         errorResponse.setErrorCode(ErrorCodeEnum.BOOK_ALREADY_EXIST_ERROR.getCode());
@@ -58,6 +58,27 @@ public class GlobalExceptionHandler {
         return errorResponse;
     }
 
+    @ExceptionHandler(BookNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    ErrorResponse handleBookNotFoundException(BookNotFoundException e) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(e.getMessage());
+        errorResponse.setErrorCode(ErrorCodeEnum.BOOK_NOT_FOUND_ERROR.getCode());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        return errorResponse;
+    }
+
+    @ExceptionHandler(AuthorNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    ErrorResponse handleAuthorNotFoundException(AuthorNotFoundException e) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(e.getMessage());
+        errorResponse.setErrorCode(ErrorCodeEnum.AUTHOR_NOT_FOUND_ERROR.getCode());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        return errorResponse;
+    }
 
 
 }
