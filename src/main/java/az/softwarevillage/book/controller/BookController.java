@@ -5,6 +5,7 @@ import az.softwarevillage.book.dto.response.BaseResponse;
 import az.softwarevillage.book.dto.response.BookResponse;
 import az.softwarevillage.book.model.Book;
 import az.softwarevillage.book.service.BookService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
